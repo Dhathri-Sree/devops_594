@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Registration</title>
+  <style>
+    body {
+      background: linear-gradient(to right, #74ebd5, #ACB6E5);
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 500px;
+      background-color: white;
+      margin: auto;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #5cb85c;
+      color: white;
+      border: none;
+      width: 100%;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #4cae4c;
+    }
+
+    .note {
+      font-size: 12px;
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Registration Form</h2>
+    <form onsubmit="return validateForm()" action="thankyou.html">
+      <label for="fname">First Name:</label>
+      <input type="text" id="fname" name="fname" required>
+
+      <label for="lname">Last Name:</label>
+      <input type="text" id="lname" name="lname" required>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="country">Country:</label>
+      <select id="country" name="country" required>
+        <option value="">Select Country</option>
+        <option>India</option>
+        <option>USA</option>
+        <option>UK</option>
+        <option>Canada</option>
+        <option>Germany</option>
+      </select>
+
+      <label for="phone">Phone Number:</label>
+      <div style="display: flex; gap: 10px;">
+        <select id="countryCode" required style="flex: 1;">
+          <option value="">Code</option>
+          <option value="+91">+91 (IN)</option>
+          <option value="+1">+1 (US)</option>
+          <option value="+44">+44 (UK)</option>
+        </select>
+        <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" placeholder="1234567890" required style="flex: 2;">
+      </div>
+
+      <label for="course">Course:</label>
+      <select id="course" name="course" required>
+        <option value="">Select Course</option>
+        <option>Computer Science</option>
+        <option>ECE</option>
+        <option>EEE</option>
+        <option>IT</option>
+        <option>Mechanical</option>
+        <option>Civil</option>
+        <option>Other</option>
+      </select>
+
+      <label for="dob">Date of Birth:</label>
+      <input type="date" id="dob" name="dob" required>
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required>
+
+      <label for="confirmpassword">Confirm Password:</label>
+      <input type="password" id="confirmpassword" name="confirmpassword" required>
+      <div class="note" id="passwordNote"></div>
+
+      <button type="submit">Register</button>
+    </form>
+  </div>
+
+  <script>
+    // Set max date for DOB as today
+    document.getElementById("dob").max = new Date().toISOString().split("T")[0];
+
+    function validateForm() {
+      const password = document.getElementById("password").value;
+      const confirmPassword = document.getElementById("confirmpassword").value;
+      const note = document.getElementById("passwordNote");
+
+      if (password !== confirmPassword) {
+        note.textContent = "Passwords do not match.";
+        return false;
+      } else {
+        note.textContent = "";
+        return true;
+      }
+    }
+  </script>
+</body>
+</html>
